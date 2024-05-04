@@ -1,0 +1,30 @@
+stages:   
+  - prepare
+  - build
+  - test
+
+prepare-job:
+  stage: prepare
+  script:
+    - yarn install
+
+build-job:
+  stage: build
+  needs:
+    - prepare-job
+  script:
+    - yarn build
+
+unit-test-job:
+  stage: test
+  needs:
+    - prepare-job
+  script:
+    - yarn test
+
+lint-test-job:
+  stage: test
+  needs:
+    - prepare-job
+  script:
+    - yarn lint
