@@ -4,6 +4,7 @@ stages:
   - prepare
   - build
   - test
+  - lint
 
 build-job:
   stage: build
