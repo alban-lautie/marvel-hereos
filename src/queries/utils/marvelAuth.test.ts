@@ -2,7 +2,7 @@ import { getHash, QueryParams, addMarvelAuthorizationOnUrl } from "./marvelAuth"
 
 beforeAll(() => {
   jest.useFakeTimers('modern');
-  jest.setSystemTime(new Date(2020, 3, 1));
+  jest.setSystemTime(Date.UTC(2020, 3, 1));
 });
 
 process.env.NEXT_PUBLIC_API_PUBLIC_KEY = 'yourPublicKey';
