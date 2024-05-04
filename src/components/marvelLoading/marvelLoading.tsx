@@ -1,20 +1,45 @@
-import React, { FC } from "react";
-import Lottie from "react-lottie";
-import animationData from "./spierman-animation.json";
+import { useQuery } from "@tanstack/react-query";
+import { type LottieComponentProps } from "lottie-react";
+import { Suspense, lazy, FC } from "react";
 
 export const MarvelLoading: FC = () => {
-  /* Vars */
-
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-
-  // ReferenceError: document is not defined - Issue (https://github.com/Gamote/lottie-react/issues/101)
-
-  return <Lottie options={defaultOptions} height={400} width={400} />;
+  return (
+    <div className="h-[400px] w-[400px]">
+      <LazyLottie
+        getJson={() => import("./spierman-animation.json")}
+        loop
+        id="empty-box"
+        width={400}
+        height={400}
+      />
+    </div>
+  );
 };
+
+const LazyLottieComponent = lazy(() => import("lottie-react"));
+
+interface LottieProps<T extends Record<string, unknown>> {
+  getJson: () => Promise<T>;
+  id: string;
+}
+
+export function LazyLottie<T extends Record<string, unknown>>({
+  getJson,
+  id,
+  ref,
+  ...props
+}: LottieProps<T> & Omit<LottieComponentProps, "animationData">) {
+  const { data } = useQuery({
+    queryKey: [id],
+    queryFn: getJson,
+    enabled: typeof window !== "undefined",
+  });
+
+  if (!data) return null;
+
+  return (
+    <Suspense fallback={null}>
+      <LazyLottieComponent animationData={data} {...props} />
+    </Suspense>
+  );
+}

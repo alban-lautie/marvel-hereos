@@ -8,9 +8,9 @@ import ReactPaginate from "react-paginate";
 import {
   SearchInput,
   Select,
-  MarvelLoading,
   Hero,
   ToggleButton,
+  MarvelLoading
 } from "@/components";
 import { getHereos, getFavoriteHeros } from "@/queries";
 
@@ -83,10 +83,10 @@ export default function Home() {
 
   return (
     <div className="flex flex-col justify-between min-h-screen">
-      <div>
+      <div className="flex flex-col items-center w-full">
         <h1 className="mt-4 text-6xl text-center">MARVEL HEREOS</h1>
 
-        <div className="mt-6 flex gap-4">
+        <div className="mt-6 flex gap-4 w-full">
           <SearchInput onChange={setSearch} placeholder="Search a hero..." />
 
           <Select
@@ -106,7 +106,7 @@ export default function Home() {
         {isLoading ? (
           <MarvelLoading />
         ) : (
-          <div>
+          <div className="w-full">
             {data?.count && data.count > 0 ? (
               <div
                 className={classNames(
