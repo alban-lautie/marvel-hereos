@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Jersey_15 } from "next/font/google";
+import classNames from "classnames";
+
+import { ReactQueryProvider } from "@/providers";
+
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const jersey = Jersey_15({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Marvel heros",
@@ -16,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={classNames(jersey.className, "px-14")}>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
+      </body>
     </html>
   );
 }
