@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import classNames from "classnames";
 import ReactPaginate from "react-paginate";
 
 import {
@@ -13,8 +12,6 @@ import {
   MarvelLoading,
 } from "@/components";
 import { getHereos, getFavoriteHeros } from "@/queries";
-
-import styles from "./styles.module.css";
 
 const OPTIONS_PAGE_SIZE = [
   {
@@ -82,7 +79,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col justify-between min-h-screen">
+    <div className="flex flex-col justify-between min-h-screen pb-4">
       <div className="flex flex-col items-center w-full">
         <h1 className="mt-4 text-6xl text-center">MARVEL HEREOS</h1>
 
