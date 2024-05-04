@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={classNames(jersey.className, "px-14")}>
+      <body className={classNames(jersey.className, "px-4 md:px-14")}>
         <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>
     </html>

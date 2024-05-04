@@ -10,7 +10,7 @@ import {
   Select,
   Hero,
   ToggleButton,
-  MarvelLoading
+  MarvelLoading,
 } from "@/components";
 import { getHereos, getFavoriteHeros } from "@/queries";
 
@@ -79,28 +79,30 @@ export default function Home() {
   const handleToggleFavorite = () => {
     setShowFavorite(!showFavorite);
     setPage(0);
-  }
+  };
 
   return (
     <div className="flex flex-col justify-between min-h-screen">
       <div className="flex flex-col items-center w-full">
         <h1 className="mt-4 text-6xl text-center">MARVEL HEREOS</h1>
 
-        <div className="mt-6 flex gap-4 w-full">
+        <div className="mt-6 flex flex-col md:flex-row gap-4 w-full">
           <SearchInput onChange={setSearch} placeholder="Search a hero..." />
 
-          <Select
-            options={OPTIONS_PAGE_SIZE}
-            onChange={(value) => handleChangeLimit(value as number)}
-            value={limit}
-            className="w-64"
-          />
+          <div className="flex gap-4">
+            <Select
+              options={OPTIONS_PAGE_SIZE}
+              onChange={(value) => handleChangeLimit(value as number)}
+              value={limit}
+              className="w-full md:w-64"
+            />
 
-          <ToggleButton
-            label="favorite"
-            onChange={handleToggleFavorite}
-            value={showFavorite}
-          />
+            <ToggleButton
+              label="favorite"
+              onChange={handleToggleFavorite}
+              value={showFavorite}
+            />
+          </div>
         </div>
 
         {isLoading ? (
@@ -108,13 +110,7 @@ export default function Home() {
         ) : (
           <div className="w-full">
             {data?.count && data.count > 0 ? (
-              <div
-                className={classNames(
-                  "mt-4",
-                  "gap-4",
-                  styles.charactersContainer
-                )}
-              >
+              <div className="mt-4 gap-4 flex flex-wrap justify-center">
                 {data.results.map((character: any) => (
                   <Hero key={`character-${character.id}`} hero={character} />
                 ))}
@@ -130,12 +126,12 @@ export default function Home() {
         breakLabel="..."
         nextLabel=">"
         onPageChange={(event) => setPage(event.selected)}
-        pageRangeDisplayed={8}
+        pageRangeDisplayed={5}
         pageCount={totalPages}
         previousLabel="<"
         renderOnZeroPageCount={null}
         forcePage={page}
-        containerClassName="mt-4 flex justify-center gap-4 items-center"
+        containerClassName="mt-4 flex justify-center gap-4 items-center w-full flex-wrap"
         pageLinkClassName="border-2 border-white w-10 h-10 flex justify-center items-center"
         previousLinkClassName="border-2 border-white w-10 h-10 flex justify-center items-center"
         nextLinkClassName="border-2 border-white w-10 h-10 flex justify-center items-center"

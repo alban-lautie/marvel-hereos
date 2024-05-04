@@ -31,7 +31,7 @@ export const SearchInput: FC<SearchInputProps> = ({ className, onChange, default
     <input
       className={classNames(
         className,
-        "bg-transparent p-2 border-2 border-white w-full outline-none"
+        "bg-transparent p-2 border-2 border-white w-full outline-none h-11"
       )}
       onChange={handleInputChange}
       value={inputValue}

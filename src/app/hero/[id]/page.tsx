@@ -5,6 +5,7 @@ import type { MouseEvent } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import classNames from "classnames";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 import { MarvelLoading } from "@/components";
 import { getHero, removeFavoriteHero, addFavoriteHero } from "@/queries";
@@ -51,14 +52,14 @@ export default function Hero({ params: { id } }: HeroPageProps) {
   }, [hero?.isFavorite]);
 
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className="flex flex-col items-center w-full pb-4">
       {isLoading && <MarvelLoading />}
 
       {hero && (
         <div className="flex flex-col items-center gap-6 w-full">
           <h1 className="mt-4 text-6xl text-center">{hero.name}</h1>
 
-          <div className="flex gap-4 flex-wrap w-full">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-4 flex-wrap w-full">
             <Image
               src={`${hero.thumbnail.path}/portrait_uncanny.${hero.thumbnail.extension}`}
               alt={hero.name}
@@ -75,12 +76,14 @@ export default function Hero({ params: { id } }: HeroPageProps) {
                 </p>
 
                 <button
-                  className={classNames("p-2 h-11 border-2 border-white", {
+                  className={classNames("flex gap-2 items-center p-2 h-11 border-2 border-white", {
                     "bg-white text-black": isFavorite,
                   })}
                   onClick={handleToogleFavorite(hero)}
                 >
-                  {isFavorite ? "Remove favorite" : "Add favorite"}
+                  <span className="hidden md:block">{isFavorite ? "Remove favorite" : "Add favorite"}</span>
+
+                  <span className="block">{isFavorite ? <FaHeart /> : <FaRegHeart />}</span>
                 </button>
               </div>
 
