@@ -16,7 +16,7 @@ describe('addMarvelAuthorizationOnUrl function', () => {
       nameStartsWith: 'Iron',
       limit: 20
     };
-    const expectedUri = `https://api.marvel.com/characters?apikey=yourPublicKey&ts=1585720800000&hash=1df4e00658ce9f8b5cb1f574ed2f0abc&nameStartsWith=Iron&limit=20`;
+    const expectedUri = `https://api.marvel.com/characters?apikey=yourPublicKey&ts=1585699200000&hash=ff598799f010c0b177a9f074716e5f13&nameStartsWith=Iron&limit=20`;
 
     const result = addMarvelAuthorizationOnUrl(url, queryParams);
 
@@ -25,7 +25,7 @@ describe('addMarvelAuthorizationOnUrl function', () => {
 
   it('should add Marvel authorization parameters to the URL correctly without query parameters', () => {
     const url = 'characters';
-    const expectedUri = `https://api.marvel.com/characters?apikey=yourPublicKey&ts=1585720800000&hash=1df4e00658ce9f8b5cb1f574ed2f0abc`;
+    const expectedUri = `https://api.marvel.com/characters?apikey=yourPublicKey&ts=1585699200000&hash=ff598799f010c0b177a9f074716e5f13`;
 
     const result = addMarvelAuthorizationOnUrl(url);
 
