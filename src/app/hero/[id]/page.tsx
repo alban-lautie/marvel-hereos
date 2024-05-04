@@ -51,14 +51,14 @@ export default function Hero({ params: { id } }: HeroPageProps) {
   }, [hero?.isFavorite]);
 
   return (
-    <div>
+    <div className="flex flex-col items-center w-full">
       {isLoading && <MarvelLoading />}
 
       {hero && (
-        <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-6 w-full">
           <h1 className="mt-4 text-6xl text-center">{hero.name}</h1>
 
-          <div className="flex gap-4 flex-wrap">
+          <div className="flex gap-4 flex-wrap w-full">
             <Image
               src={`${hero.thumbnail.path}/portrait_uncanny.${hero.thumbnail.extension}`}
               alt={hero.name}
@@ -68,7 +68,7 @@ export default function Hero({ params: { id } }: HeroPageProps) {
 
             <div className="flex flex-col gap-6 justify-between flex-1 h-[450px}">
               <div className="flex justify-between gap-4">
-                <p>
+                <p className="flex-1">
                   {hero.description
                     ? hero.description
                     : "Description not available"}
