@@ -15,6 +15,7 @@ build-job:
 unit-test-job:
   stage: test
   script:
+    - rm yarn.lock
     - yarn install
     - yarn test:ci
 
